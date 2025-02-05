@@ -61,8 +61,11 @@ const char *data = "Ok cool !";
 ```
 
 Réponse :
-```BASH
-Modifiez-moi
+```NASM
+section .rodata
+    str_data db "Ok cool !", 0
+section .data
+    str_ptr dq str_data
 ```
 
 ***
@@ -71,8 +74,10 @@ char *data = "Ok cool !";
 ```
 
 Réponse :
-```BASH
-Modifiez-moi
+```NASM
+section .data
+    data_buff db "Ok cool !", 0
+    data_ptr dq data_buff
 ```
 
 ***
@@ -81,18 +86,20 @@ const char data[] = "Ok cool !";
 ```
 
 Réponse :
-```BASH
-Modifiez-moi
+```NASM
+section .rodata
+    data_buff db "Ok cool !", 0
 ```
 
 ***
 ```C
-char data[] = "Ok cool !";
+char data_buff[] = "Ok cool !";
 ```
 
 Réponse :
-```BASH
-Modifiez-moi
+```NASM
+section .data
+    data_buff db "Ok cool !", 0
 ```
 
 ***
@@ -101,8 +108,10 @@ const char data[20] = "Ok cool !";
 ```
 
 Réponse :
-```BASH
-Modifiez-moi
+```NASM
+section .rodata
+    data db "Ok cool !", 0
+    times 20 - ($ - data) db 0
 ```
 
 ***
@@ -113,7 +122,8 @@ char data[20];
 
 Réponse :
 ```BASH
-Modifiez-moi
+section .bss
+    data resb 20
 ```
 
 ***
@@ -279,6 +289,7 @@ Modifiez-moi (NASM code)
 
 ### 🛠 Exercice 02.00 : Créer une fonction (C/ASM) avec Stack Frame (exo0200.asm && ex02.c)
 
+Créez une fonction `bar(void)` qui à comme variable x à 10 et qui retourne `x + 1`.
 
 ```bash
 Modifiez-moi (C code)
@@ -289,6 +300,8 @@ Modifiez-moi (NASM code)
 
 
 ### 🛠 Exercice 02.01 : Créer une fonction (C/ASM) sans Stack Frame (exo0201.asm && ex02.c)
+
+Créez une fonction `bar(void)` qui à comme variable x à 10 et qui retourne `x + 1`.
 
 
 ```bash
